@@ -23,7 +23,7 @@ class GTNN(nn.Module):
         self.fc1.bias.data = torch.randn(hidden_dim)
         self.fc1.weight.data /= torch.sqrt(torch.sum(self.fc1.weight.data**2, dim=1, keepdim=True))
 
-        a = torch.sqrt(torch.tensor(0.8) / (output_dim))
+        a = torch.sqrt(torch.tensor(0.8) / (hidden_dim))
         self.fc2.weight.data = a * torch.randn(output_dim, hidden_dim)
         self.gamma = gamma
         self.u1, self.u2 = None, None
@@ -144,4 +144,5 @@ if __name__ == "__main__":
         ax.set_title(rf"$\gamma={{{2**(i+1)}}}$", fontsize=13)
 
     plt.show()
+
 
