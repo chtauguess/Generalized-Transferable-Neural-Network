@@ -14,7 +14,7 @@ import argparse
 
 from problem import Problem
 from dataset import Dataset
-from models import GTransNet, TransNet, ELM
+from models import GTransNet, TransNet
 
 
 class Solver:
@@ -34,8 +34,6 @@ class Solver:
             self.model = GTransNet(args.hidden_dim, args.output_dim, args.gamma).to(self.device)
         elif args.model == "TransNet":
             self.model = TransNet(args.output_dim, args.gamma).to(self.device)
-        elif args.model == "ELM":
-            self.model = ELM(args.output_dim).to(self.device)
         else:
             raise NotImplementedError
 
@@ -98,7 +96,7 @@ class Solver:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="GTransNet", help="GTransNet, TransNet or ELM")
+    parser.add_argument("--model", type=str, default="GTransNet", help="GTransNet or TransNet")
     parser.add_argument("--test", type=str, default="test0", help="test0-test10")
     args = parser.parse_args()
 
@@ -139,3 +137,4 @@ if __name__ == "__main__":
     solver = Solver(test_setting[args.test])
     w = solver.solve(test_setting[args.test].equation)
     r_max_err, r_L2_err = solver.test(w)
+
