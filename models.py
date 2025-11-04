@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 
 
-class GTNN(nn.Module):
+class GTransNet(nn.Module):
     def __init__(self, hidden_dim=600, output_dim=500, gamma=2):
         super().__init__()
 
@@ -83,4 +83,5 @@ class TransNet(nn.Module):
             return u_x, u_y, u_xx, u_yy, u_xy
 
         return u_x, u_y
+
 
